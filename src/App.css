@@ -810,3 +810,10 @@ input:checked + .slider4:before {
   color: #6e68b3;
   font-size: 10px;
 }
+
+.power-consumed{
+  margin-top: 2rem;
+  -webkit-box-shadow: -4px -4px 15px 1px #24223ad7; 
+  box-shadow: -4px -4px 15px 1px #24223ad7;
+  border: 2px #24223ad7 solid;
+}

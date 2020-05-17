@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CanvasJSReact from '../canvasjs-2.3.2/canvasjs.react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faChevronDown, faChevronRight, faArchive, faWifi, faMusic, faLightbulb
@@ -7,12 +8,47 @@ import profile1 from '../img/profile1.png';
 import profile2 from '../img/profile2.png';
 import profile3 from '../img/profile3.png';
 import profile4 from '../img/profile4.png';
-import profile5 from '../img/profile5.png'
+import profile5 from '../img/profile5.png';
+
+
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default class RightSidebar extends Component {
     render() {
+
+        const options = {
+            theme: "dark2",
+            exportEnabled: true,
+            animationEnabled: true,
+            backgroundColor: "#131220",
+            fontFamily: 'Poppins',
+            title: {
+                text: "Electricity Consumed"
+            },
+            axisY: {
+                includeZero: false,
+                suffix: "%"
+            },
+            axisX: {
+                valueFormatString: "MMM YYYY"
+            },
+            data: [{
+                type: "splineArea",
+                xValueFormatString: "MMM YYYY",
+                dataPoints: [
+                    { x: new Date("2020-02"), y: 70.24 },
+                    { x: new Date("2020-03"), y: 74.36 },
+                    { x: new Date("2020-04"), y: 72.25 },
+                    { x: new Date("2020-05"), y: 72.87 },
+                    { x: new Date("2020-06"), y: 27.76 },
+                    { x: new Date("2020-07"), y: 0 }
+                ]
+            }]
+        }
+
         return (
-            <div className="right-sidebar">
+            <div className="right-sidebar" >
                 <div className="my-devices">
                     <div className="my-devices-header">
                         <h2>My Devices</h2>
@@ -111,7 +147,11 @@ export default class RightSidebar extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="power-consumed"></div>
+                <div className="power-consumed">
+                    <CanvasJSChart options={options}
+                    /* onRef={ref => this.chart = ref} */
+                    />
+                </div>
             </div>
         )
     }
